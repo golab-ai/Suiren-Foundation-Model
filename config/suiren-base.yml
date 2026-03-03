@@ -1,0 +1,53 @@
+normalizer:
+  energy:
+    mean: -0.6324
+    std: 66.1878
+  forces:
+    mean: 0
+    std: 5.10181421699376
+
+model:
+  use_pbc:                  False
+  regress_forces:           True
+  otf_graph:                True
+  max_neighbors:            500
+  max_radius:               8.0
+  max_num_elements:         90
+
+  num_layers:               20
+  sphere_channels:          256
+  attn_hidden_channels:     64              
+  num_heads:                8
+  attn_alpha_channels:      64              
+  attn_value_channels:      16
+  ffn_hidden_channels:      512
+  norm_type:                'layer_norm_sh'
+
+  lmax_list:                [4]
+  mmax_list:                [2]
+  grid_resolution:          18           # can be reduced to [16, 14, 12, 10] for less memeory occupancy
+  EST_grid_resolution:      Null         # default is (2 * max(lmax_list) + 1) * (2 * max(lmax_list) + 2)). This value can be set larger during fine-tuning to achieve more stable predictions.
+  EST_grid_optim_step:      0
+
+  num_sphere_samples:       128
+
+  edge_channels:            128
+  use_atom_edge_embedding:  True
+  distance_function:        'gaussian'
+  num_distance_basis:       512         # not used
+
+  attn_activation:          'silu'
+  use_s2_act_attn:          False       
+  ffn_activation:           'silu'      
+  use_gate_act:             False    
+  use_grid_mlp:             True       
+  alpha_drop:               0.0 
+  drop_path_rate:           0.0    
+  proj_drop:                0.0
+
+  weight_init:              'uniform'  
+
+  num_experts_steerable:    20
+  num_experts_spherical:    20
+
+  output_module:            True        # return energy/forces or group node embedding
