@@ -209,6 +209,18 @@ Main interface for loading and managing the Suiren model.
   - `atom_ref` - Whether to apply atomic reference correction
 - Returns: dict with model outputs ('energy', 'forces', 'embedding', etc.)
 
+## Citation
+
+If you use this framework or Suiren models, please cite the relevant papers for the underlying models.
+
+```
+@article{an2026suiren,
+  title={Suiren-1.0 Technical Report: A Family of Molecular Foundation Models},
+  author={An, Junyi and Lu, Xinyu and Shi, Yun-Fei and Xu, Li-Cheng and Zhang, Nannan and Qu, Chao and Qi, Yuan and Cao, Fenglei},
+  journal={arXiv preprint arXiv:2603.21942},
+  year={2026}
+}
+```
 
 ## License
 
