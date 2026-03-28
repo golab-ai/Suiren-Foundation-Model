@@ -10,7 +10,7 @@
 
 # Overview of Suiren Molecular Foundation Model
 
-Suiren Molecular Foundation Model is designed for quantum property prediction and molecular representation learning. This repository provides the model api and checkpoints of Suiren models.
+Suiren Molecular Foundation Model is designed for quantum property prediction and molecular representation learning. This repository provides the model api and checkpoints of Suiren models. Details can be found in [Suiren-1.0 Technical Report](https://arxiv.org/abs/2603.21942v1).
 
 Suiren leverages large-scale pre-training to learn comprehensive molecular representations. The model supports:
 
