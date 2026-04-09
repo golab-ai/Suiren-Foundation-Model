@@ -16,6 +16,7 @@ class ModelLoader:
             self.config = yaml.safe_load(file)
         self.model = None
         self.normalizer = None  # dict with 'mean' and 'std' for energy and forces
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     def load_model(self):
         """
@@ -26,7 +27,7 @@ class ModelLoader:
         """
         from .model.EST_eqv2 import EST_Eqv2
         model_config = self.config.get('model', {})
-        self.model = EST_Eqv2(**model_config)
+        self.model = EST_Eqv2(**model_config).to(device=self.device)
         return self.model
 
     def load_weights(self, weights_path):
@@ -273,6 +274,7 @@ class ModelLoader:
         
         self.model.eval()
         with torch.no_grad():
+            input_data = input_data.to(device=self.device)
             output = self.model(input_data)
         
         # Denormalize if requested
