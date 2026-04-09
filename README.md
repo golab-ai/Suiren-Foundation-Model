@@ -73,22 +73,17 @@ from suiren_models import ModelLoader
 loader = ModelLoader(config_path='config_name.yml')
 # example: loader = ModelLoader(config_path='suiren-base.yml')
 
-# Load model architecture
+# Load model architecture (already consider your device)
 model = loader.load_model()
 
-# Load pre-trained weights
-loader.load_weights(model, 'path/to/checkpoint')
+# Load pre-trained weights (load for loader.model)
+loader.load_weights('path/to/checkpoint')
 
 # Load normalizer from config
 loader.load_normalizer()
 
-# Load normalizer from checkpoint (optional)
+# Load normalizer from checkpoint (optional, if you have another normalizer)
 #  loader.load_normalizer('path/to/normalizer')
-
-# Move model to device
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = model.to(device)
-model.eval()
 ```
 
 ### Step 3: Prepare Input Data
@@ -119,7 +114,7 @@ with torch.no_grad():
 # Extract results
 energy = output['energy']          # Predicted total energy (kcal/mol)
 forces = output['forces']          # Predicted atomic forces (kcal / mol / A)
-embeddings = output['nodde_embeddings']  # Atomic-level embeddings
+embeddings = output['node_embeddings']  # Atomic-level embeddings
 ```
 
 If you only want to use embeddings, you can set `output_module: False` in the YAML file, and the model output only contains `output['node_embeddings']`.
